@@ -12,9 +12,12 @@ const openai = new openAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-const story = fs.readFileSync('./story.txt', 'utf-8');
 scrapPortfolio.scrap();
+const story = fs.readFileSync('./story.txt', 'utf-8');
 const portfolio = fs.readFileSync('./portfolio.txt', 'utf-8')
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 let allowedOrigins = ['http://localhost:8080', 'http://localhost:3000', 'http://127.0.0.1:3000', 'https://lukowski.io']
@@ -30,18 +33,28 @@ app.use(cors({
   }
 }));
 
-const completion = await openai.chat.completions.create({
+app.post('/query', async (req, res) => {
+  try {
+    const response = await sendQuery(req.body.query);
+    res.send(response);
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+async function sendQuery(query)  {
+  const completion = await openai.chat.completions.create({
   model: "gpt-4o-mini",
   messages: [
     { role: "system", content: story + portfolio},
     {
       role: "user",
-      content: "Who is Wojtek?",
+      content: query,
     },
   ],
-});
-
-console.log(completion.choices[0].message);
+})
+return completion.choices[0].message.content;
+};
 
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
