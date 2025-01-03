@@ -1,0 +1,69 @@
+{"prompt": "Who are you?\n\n###\n\n", "completion": "I am a chatbot embedded into Wojtek's portfolio site. I answer questions about Wojtek's professional work and experience."}
+{"prompt": "What should you do if a question is unrelated to Wojtek?\n\n###\n\n", "completion": "I will say that I am sorry, but the question is unrelated to Wojtek."}
+{"prompt": "What if you don’t find an answer in the provided materials?\n\n###\n\n", "completion": "I will say I don't have knowledge in this area, but Wojtek will be happy to discuss it personally."}
+{"prompt": "What is Wojtek's current job title?\n\n###\n\n", "completion": "Frontend Developer (cloud services)."}
+{"prompt": "Where does Wojtek currently work?\n\n###\n\n", "completion": "Wojtek works at REALTECH AG."}
+{"prompt": "What are Wojtek's responsibilities at REALTECH AG?\n\n###\n\n", "completion": "Implementing new features, fixing bugs in the CMDB cloud product, writing automated tests, and designing a dark-mode version."}
+{"prompt": "What technologies does Wojtek use at REALTECH AG?\n\n###\n\n", "completion": "Angular, Kendo UI, and TestCafe."}
+{"prompt": "What languages does Wojtek speak?\n\n###\n\n", "completion": "English (full business proficiency), German (C1), Italian (limited business proficiency), Polish (native), some Russian, and learning Japanese."}
+{"prompt": "What is Wojtek's education?\n\n###\n\n", "completion": "Master of Economics from the University of Warsaw."}
+{"prompt": "What additional courses has Wojtek completed?\n\n###\n\n", "completion": "Courses in Cyber Security, C# Programming, Website Hacking, and Ethical Hacking."}
+{"prompt": "What is Wojtek's ideal job?\n\n###\n\n", "completion": "A role starting in frontend development, with progressive learning in backend development, ideally in a company working with IoTs."}
+{"prompt": "What is Weatherize?\n\n###\n\n", "completion": "Weatherize is a responsive web app that uses geolocation and a public API to display weather data for the user's location or queries."}
+{"prompt": "How does a weather forecast in portfolio work?\n\n###\n\n", "completion": "Wojtek implemented a button to request user location permissions for the weather feature and fetches data from a public API."}
+{"prompt": "What is the Dot4 project?\n\n###\n\n", "completion": "Dot4 is a cloud-based tool combining ITSM functionalities with a CMDB to enhance IT operations management, developed by Wojtek at REALTECH AG."}
+{"prompt": "What technologies are used in Dot4?\n\n###\n\n", "completion": "Angular, TypeScript, CSS, Kendo UI, and TestCafe."}
+{"prompt": "What is Wojtek's tech stack?\n\n###\n\n", "completion": "HTML, CSS/SCSS, JavaScript, TypeScript, Angular, React, TestCafe, Node.js, Express, MongoDB, PostgresSQL, Git, and more."}
+{"prompt": "What is Wojtek interested in learning?\n\n###\n\n", "completion": "Wojtek is interested in learning backend development, including C#, Java, Python, and C, as well as digital security."}
+{"prompt": "What is Wojtek's UX design background?\n\n###\n\n", "completion": "Wojtek has designed responsive web apps, created frontend prototypes, and developed his own portfolio site using HTML, CSS, and JavaScript."}
+{"prompt": "What does Wojtek's Movies API project include?\n\n###\n\n", "completion": "It is a server-side API with endpoints for movie data, tested with Postman, and implemented with Node.js, Express, and MongoDB."}
+{"prompt": "What is TalkNow?\n\n###\n\n", "completion": "TalkNow is a React Native chat app with features for text, image, and location sharing, storing messages for offline viewing."}
+{"prompt": "What is Wojtek's Python port scanners project?\n\n###\n\n", "completion": "A project exploring basic networking concepts and Python coding for educational purposes."}
+{"prompt": "What is Wojtek's Pokemons API project?\n\n###\n\n", "completion": "An app displaying Pokemon data with a modal that shows the name, height, and image upon clicking a button."}
+{"prompt": "What does Wojtek's Vanilla JavaScript Menu project include?\n\n###\n\n", "completion": "A responsive menu built with vanilla JavaScript, HTML, and CSS, featuring submenu navigation and closing mechanisms."}
+{"prompt": "What is Wojtek's work experience at REALTECH AG?", "completion": "Wojtek has been working as a Frontend Developer at REALTECH AG since May 2022."}
+{"prompt": "How long has Wojtek been working at REALTECH AG?", "completion": "Wojtek has been working at REALTECH AG for over 2 years."}
+{"prompt": "When did Wojtek work at Q4U: Experience Design Studio?", "completion": "Wojtek worked at Q4U: Experience Design Studio from June 2021 to December 2021."}
+{"prompt": "How long did Wojtek work at Q4U: Experience Design Studio?", "completion": "Wojtek worked at Q4U: Experience Design Studio for about 6 months."}
+{"prompt": "When did Wojtek complete the Full Stack Web Development Immersion?", "completion": "Wojtek completed the Full Stack Web Development Immersion course in February 2022."}
+{"prompt": "When did Wojtek complete the UX Immersion course?", "completion": "Wojtek completed the UX Immersion course in January 2021."}
+{"prompt": "What is Wojtek's educational background?", "completion": "Wojtek holds a Master's degree in Economics from the University of Warsaw."}
+{"prompt": "What is Wojtek's OpenAI implementation project?", "completion": "The OpenAI implementation is a backend project where Wojtek built an AI chatbot for his portfolio using Node.js and Express. It processes user queries based on curated materials like his portfolio and CV, ensuring context-relevant responses. The backend handles communication with the OpenAI API, request routing, error handling, and data parsing, while the frontend displays chatbot responses in real time. The project ensures smooth integration, scalability, and a personalized experience."}
+{"prompt": "What technologies did Wojtek use in his OpenAI implementation project?", "completion": "Wojtek used HTML, CSS, JavaScript, Node.js, Express, and Heroku in his OpenAI implementation project."}
+{"prompt": "What technologies were used in the project Dot4 by REALTECH?", "completion": "Angular, TypeScript, CSS, Kendo UI, and TestCafe were used in the project Dot4 by REALTECH."}
+{"prompt": "What technologies were used in the project Weatherize?", "completion": "HTML, CSS, Create React App, React, Recharts, Node.js/Express, MongoDB and Heroku were used in the project Weatherize."}
+{"prompt": "What technologies were used in the project Covid Info?", "completion": "HTML, CSS, JavaScript, and Google Charts were used in the project Covid Info."}
+{"prompt": "What technologies were used in the project Vanilla JavaScript Menu?", "completion": "JavaScript, HTML, and CSS were used in the project Vanilla JavaScript Menu."}
+{"prompt": "What technologies were used in the project Entwicklungshelfer?", "completion": "Docker, gulp, SCSS(SASS), and Typo3 were used in the project Entwicklungshelfer."}
+{"prompt": "What technologies were used in the project Python port scanners?", "completion": "Python was used in the project Python port scanners."}
+{"prompt": "What technologies were used in the project Movies API - React client side?", "completion": "JSX, SCSS, JavaScript, React, and Bootstrap were used in the project Movies API - React client side."}
+{"prompt": "What technologies were used in the project Movies API - Angular client side?", "completion": "HTML, SCSS, TypeScript, Angular, and Angular Materials were used in the project Movies API - Angular client side."}
+{"prompt": "What technologies were used in the project Movies API?", "completion": "JavaScript, Node.js, Express, MongoDB, and Postman were used in the project Movies API."}
+{"prompt": "What technologies were used in the project Pokemons API?", "completion": "HTML, CSS, JavaScript, jQuery, and Bootstrap were used in the project Pokemons API."}
+{"prompt": "What technologies were used in the project Evently?", "completion": "JSX, SCSS, JavaScript, React, Serverless, AWS, OAuth, Jest, and Recharts were used in the project Evently."}
+{"prompt": "What technologies were used in the project TalkNow?", "completion": "JSX, React Native, Expo, Firestore/Firebase, and Gifted Chat were used in the project TalkNow."}
+{"prompt": "What technologies were used in the project OpenAI implementation?", "completion": "HTML, CSS, JavaScript, Node.js/Express, and Heroku were used in the project OpenAI implementation."}
+{"prompt": "What is Realtech?", "completion": "I will answer using the public information available on the internet."}
+{"prompt": "What should I answer if I am asked about any of the technolgies?", "completion": "I will answer using the public information available on the internet."}
+{"prompt": "In which projects was Angular used?", "completion": "Angular was used in Dot4 by REALTECH and Movies API - Angular client side."}
+{"prompt": "In which projects was TypeScript used?", "completion": "TypeScript was used in Dot4 by REALTECH and Movies API - Angular client side."}
+{"prompt": "In which projects was HTML used?", "completion": "HTML was used in Weatherize, Covid Info, Vanilla JavaScript Menu, Movies API - React client side, Movies API - Angular client side, Pokemons API, Evently (Google calendar API), TalkNow (React Native chat app), and Vanilla JavaScript Menu."}
+{"prompt": "In which projects was CSS/SCSS used?", "completion": "CSS/SCSS was used in Weatherize, Covid Info, Vanilla JavaScript Menu, Movies API - React client side, Movies API - Angular client side, Pokemons API, Evently (Google calendar API), TalkNow (React Native chat app), and Vanilla JavaScript Menu."}
+{"prompt": "In which projects was React used?", "completion": "React was used in Weatherize, Movies API - React client side, and Evently (Google calendar API)."}
+{"prompt": "In which projects was React Native used?", "completion": "React Native was used in TalkNow (React Native chat app)."}
+{"prompt": "In which projects was Node.js / Express used?", "completion": "Node.js / Express was used in Weatherize, Movies API, and Evently (Google calendar API)."}
+{"prompt": "In which projects was MongoDB used?", "completion": "MongoDB was used in Weatherize, Movies API, and Evently (Google calendar API)."}
+{"prompt": "In which projects was PostgresSQL used?", "completion": "PostgresSQL was used in Dot4 by REALTECH."}
+{"prompt": "In which projects was JavaScript used?", "completion": "JavaScript was used in Weatherize, Covid Info, Vanilla JavaScript Menu, Movies API - React client side, Movies API - Angular client side, Pokemons API, Evently (Google calendar API), TalkNow (React Native chat app), and Vanilla JavaScript Menu."}
+{"prompt": "In which projects was Kendo UI used?", "completion": "Kendo UI was used in Dot4 by REALTECH."}
+{"prompt": "In which projects was TestCafe used?", "completion": "TestCafe was used in Dot4 by REALTECH."}
+{"prompt": "In which projects was Git used?", "completion": "Git was used in Dot4 by REALTECH and Q4U: Experience Design Studio."}
+{"prompt": "In which projects was TFS/Jira used?", "completion": "TFS/Jira was used in Dot4 by REALTECH."}
+{"prompt": "In which projects was Postman used?", "completion": "Postman was used in Movies API, Weatherize, OpenAi implementation"}
+{"prompt": "In which projects was Figma used?", "completion": "Figma was used in Weatherize, Q4U: Experience Design Studio, and TalkNow (React Native chat app)."}
+{"prompt": "In which projects was Bootstrap used?", "completion": "Bootstrap was used in Movies API - React client side and Movies API - Angular client side."}
+{"prompt": "In which projects was jQuery used?", "completion": "jQuery was used in Pokemons API."}
+{"prompt": "In which projects was Docker used?", "completion": "Docker was used in Entwicklungshelfer."}
+{"prompt": "In which projects was gulp used?", "completion": "gulp was used in Entwicklungshelfer."}
+{"prompt": "In which projects was Typo3 used?", "completion": "Typo3 was used in Entwicklungshelfer."}
+{"prompt": "In which projects was SCSS (SASS) used?", "completion": "SCSS (SASS) was used in Weatherize, Covid Info, Vanilla JavaScript Menu, Movies API - React client side, Movies API - Angular client side, Pokemons API, Evently (Google calendar API), TalkNow (React Native chat app), and Vanilla JavaScript Menu."}

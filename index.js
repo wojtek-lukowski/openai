@@ -5,7 +5,6 @@ import fs from 'fs';
 import * as dotenv from 'dotenv';
 import scrapPortfolio from './scrapPortfolio.js';
 
-
 dotenv.config();
 const app = express();
 const openai = new openAI({
@@ -13,8 +12,8 @@ const openai = new openAI({
 });
 
 scrapPortfolio.scrap();
-const story = fs.readFileSync('./story.txt', 'utf-8');
-const portfolio = fs.readFileSync('./portfolio.txt', 'utf-8')
+const story = fs.readFileSync('./materials/story.txt', 'utf-8');
+const portfolio = fs.readFileSync('./materials/portfolio.txt', 'utf-8');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -34,26 +33,33 @@ app.use(cors({
 }));
 
 app.post('/query', async (req, res) => {
+  if (req.body.query) {
   try {
     const response = await sendQuery(req.body.query);
     res.send(response);
-  } catch (error) {
-    console.log(error)
+    } catch (error) {
+       console.log(error);
+       res.status(500).send({ error: 'Internal server error' })
+    }
   }
 })
 
 async function sendQuery(query)  {
-  const completion = await openai.chat.completions.create({
-  model: "gpt-4o-mini",
-  messages: [
-    { role: "system", content: story + portfolio},
-    {
-      role: "user",
-      content: query,
-    },
-  ],
-})
-return completion.choices[0].message.content;
+  try {
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: story + portfolio},
+        {
+          role: "user",
+          content: query,
+        },
+      ],
+    })
+    return completion.choices[0].message.content;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const port = process.env.PORT || 8080;
