@@ -4,6 +4,7 @@ import cors from 'cors';
 import fs from 'fs';
 import * as dotenv from 'dotenv';
 import scrapPortfolio from './scrapPortfolio.js';
+import db from "./database.js";
 
 dotenv.config();
 const app = express();
@@ -37,6 +38,7 @@ app.post('/query', async (req, res) => {
   try {
     const response = await sendQuery(req.body.query);
     res.send(response);
+    addData({question: req.body.query, answer: response})
     } catch (error) {
        console.log(error);
        res.status(500).send({ error: 'Internal server error' })
@@ -61,6 +63,15 @@ async function sendQuery(query)  {
     console.log(error);
   }
 };
+
+const addData = async (query) => {
+  try {
+    await db.collection('openai').add({ question: query.question, answer: query.answer });
+  } catch (error) {
+    console.error("Error adding document:", error);
+  }
+};
+
 
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
