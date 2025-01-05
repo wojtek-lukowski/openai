@@ -5,16 +5,17 @@ import fs from 'fs';
 import * as dotenv from 'dotenv';
 import scrapPortfolio from './scrapPortfolio.js';
 import db from "./database.js";
+import natural from "natural";
 
 dotenv.config();
 const app = express();
 const openai = new openAI({
   apiKey: process.env.OPENAI_API_KEY
 });
-
-scrapPortfolio.scrap();
-const story = fs.readFileSync('./materials/story.txt', 'utf-8');
+const tfidf = new natural.TfIdf();
 const portfolio = fs.readFileSync('./materials/portfolio.txt', 'utf-8');
+const story = fs.readFileSync('./materials/story.txt', 'utf-8');
+scrapPortfolio.scrap();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -35,12 +36,21 @@ app.use(cors({
 
 app.post('/query', async (req, res) => {
   if (req.body.query) {
-  try {
-    const response = await sendQuery(req.body.query);
-    res.send(response);
-    addData({question: req.body.query, answer: response})
-    } catch (error) {
-       console.log(error);
+    try {
+      const response = await sendQuery(req.body.query);
+      res.send(response);
+      const dbQuestionId = await processQuery(req.body.query);
+      if (!dbQuestionId) {
+        addData({question: req.body.query, answer: response});
+        console.log('added to db')
+        // console.log('existing question', dbQuestionId)
+        // const query = await getById(dbQuestionId);
+        // res.send(query.data().answer)
+        // console.log(query.id, '=>', (query.data()));
+      } else {
+        console.log('NOT added to db')
+      }
+    } catch {
        res.status(500).send({ error: 'Internal server error' })
     }
   }
@@ -70,6 +80,73 @@ const addData = async (query) => {
   } catch (error) {
     console.error("Error adding document:", error);
   }
+};
+
+const getAll = async () => { 
+  const queries = db.collection('openai');
+  const snapshot = await queries.get();
+  let questions = [];
+  snapshot.forEach(doc => {
+    questions.push({id: doc.id, question: doc.data().question})
+  });
+  return questions;
+}
+
+const getById = async (id) => { 
+  const queries = db.collection('openai').doc(id);
+  const snapshot = await queries.get();
+  return snapshot;
+}
+
+const processQuery = async (query) => {
+  const dbQuestions = await getAll();
+
+  dbQuestions.forEach( question => {
+    question.question = question.question.toLowerCase();
+    tfidf.addDocument(question.question);
+  })
+
+  const tokenizedQuery = query.toLowerCase().split(' ');
+
+  const queryVector = tokenizedQuery.map ((token) => {
+    return {
+      term: token,
+      tfidf: tfidf.tfidf(token, 0)
+    }
+  })
+
+  const dataBaseVectors = dbQuestions.map((question, index) => {
+    const tokens = question.question.split(' ');
+    return tokens.map((token) => ({
+      term: token,
+      tfidf: tfidf.tfidf(token, index)
+    }))
+  })
+
+  const similarities = dataBaseVectors.map((dbVector, index) => ({
+    questionId: dbQuestions[index].id,
+    question: dbQuestions[index].question,
+    similarity: cosineSimilarity(dbVector, queryVector)
+  }));
+
+  similarities.sort((a,b) => b.similarity - a.similarity);
+
+  console.log(query, 'similarity', similarities[0].similarity)
+  if (similarities[0].similarity > .9) {
+    return similarities[0].questionId;
+  } else return null;
+}
+
+const cosineSimilarity = (vec1, vec2) => {
+  const dotProduct = vec1.reduce((sum, { term, tfidf }) => {
+    const match = vec2.find((v) => v.term === term);
+    return sum + (match ? tfidf * match.tfidf : 0);
+  }, 0);
+
+  const magnitude1 = Math.sqrt(vec1.reduce((sum, { tfidf }) => sum + tfidf ** 2, 0));
+  const magnitude2 = Math.sqrt(vec2.reduce((sum, { tfidf }) => sum + tfidf ** 2, 0));
+
+  return dotProduct / (magnitude1 * magnitude2);
 };
 
 

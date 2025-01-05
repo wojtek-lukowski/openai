@@ -7,10 +7,7 @@ async function scrap() {
 try {
   const {data} = await axios.get('https://lukowski.io');
   const $ = cheerio.load(data);
-  let content = $('body').text();
-  content = content.replace(/^\s*[\r\n]/gm, '');
-  content = content.replace(/\s+/g, ' ').trim();
-  content = content.replace(/\n{2,}/g, '\n');
+  const content = $('body').text().replace(/^\s*[\r\n]/gm, '').replace(/\s+/g, ' ').trim().replace(/\n{2,}/g, '\n');
   
   fs.writeFileSync('./materials/portfolio.txt', content, 'utf-8');
 } catch (error) {
