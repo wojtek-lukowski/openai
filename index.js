@@ -8,7 +8,8 @@ import db from "./database.js";
 import natural from "natural";
 import axios from 'axios';
 import { stringify } from 'querystring';
-// import news from "./news.js"
+import { error } from 'console';
+import {initiateNews} from "./news.js"
 
 dotenv.config();
 const app = express();
@@ -151,86 +152,19 @@ const cosineSimilarity = (vec1, vec2) => {
   return dotProduct / (magnitude1 * magnitude2);
 };
 
-
-  app.get('/news', async (req, res) => {
-
-    const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    // const clientIP = '87.178.45.172'; //germany
-    // const clientIP = '89.178.45.172'; //russia
-    // const clientIP = '185.61.158.61'; //uk
-    // const clientIP = '91.239.6.243'; //albania
-
-    console.log(clientIP);
-    let ipData;
-
-    if (clientIP) {
-
-      try {
-        ipData = await getClientCountry(clientIP);
-        console.log(ipData);
-        res.send({ 
-          clientIP, 
-          country: ipData.country,
-          countryCode: ipData.countryCode,
-          city: ipData.city
-        })
-
-        if (clientIP && ipData.country && ipData.countryCode && ipData.city) {
-          saveIpData(clientIP, ipData);
-        }
-
-      } catch (error) {
-        res(500).send('Error')
-        console.log(error);
-      }
-
-      let clientCountryCode;
-
-      if (ipData.countryCode) {
-        clientCountryCode = ipData.countryCode.toLowerCase();
-      } else {
-        clientCountryCode = 'de';
-      }
-    } else {
-      clientCountryCode = 'de';
-    }
-
-    //   try {
-    //     const response = await axios.get("https://newsdata.io/api/1/latest", {
-    //       params: {
-    //         apikey: NEWS_API_KEY,
-    //         category: 'politics',
-    //         country: clientCountryCode
-    //       }
-    //     });
-
-    //     console.log(response.data.results.map(news => news.title));
-    //     res.send(response.data);
-    //   } catch {
-    //     res.status(500).send({ error: 'News error' })
-    // }
-  })
-
-  const saveIpData = async (ip, ipData) => {
-    try {
-      await db.collection('ip').add({ ip: ip, country: ipData.country, countryCode: ipData.countryCode,  city: ipData.city});
-    } catch (error) {
-      console.error("Error adding ip:", error);
-    }
-  };
-
-  const getClientCountry = async (clientIP) => {
-    try {
-      const response = await axios.get(`http://ip-api.com/json/${clientIP}`);
-
-      console.log(response.data)
-      const { country, countryCode, city } = response.data;
-      return { country, countryCode, city }
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  }
+app.get('/news', async (req, res) => {
+   const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  //  const clientIP = '87.178.45.172'; //germany
+  //  const clientIP = '89.178.45.172'; //russia
+  //  const clientIP = '185.61.158.61'; //uk
+  //  const clientIP = '91.239.6.243'; //albania
+   try {
+     const news = await initiateNews(clientIP);
+    res.send(news)
+   } catch (error) {
+    res.status(500).send(error)
+   }
+})
 
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
