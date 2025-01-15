@@ -79,7 +79,10 @@ async function sendQuery(query)  {
 
 const addData = async (query) => {
   try {
-    await db.collection('openai').add({ question: query.question, answer: query.answer });
+    await db.collection('openai').add({
+      question: query.question, 
+      answer: query.answer
+    });
   } catch (error) {
     console.error("Error adding document:", error);
   }

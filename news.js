@@ -42,7 +42,8 @@ const saveIpData = async (ip, ipData) => {
         ip: ip, 
         country: ipData.country, 
         countryCode: ipData.countryCode,  
-        city: ipData.city, 
+        city: ipData.city,
+        proxy: ipData.proxy, 
         date: new Date()
       });
     } catch (error) {
@@ -64,10 +65,10 @@ const checkIp = async (clientIP) => {
 
 const getClientCountry = async (clientIP) => {
   try {
-    const response = await axios.get(`http://ip-api.com/json/${clientIP}`);
+    const response = await axios.get(`http://ip-api.com/json/${clientIP}?fields=188639`);
 
-    const { country, countryCode, city } = response.data;
-    return { country, countryCode, city }
+    const { country, countryCode, city, proxy } = response.data;
+    return { country, countryCode, city, proxy }
   } catch (error) {
     console.error(error);
     return null;
